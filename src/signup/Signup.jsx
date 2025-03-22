@@ -7,7 +7,7 @@ const initialValues = {
   lastName: "",
   email: "",
   password: "",
-  confirmPassword: "",
+  passwordConfirm: "",
   phoneNumber: "",
   successMsg: "",
 };
@@ -40,10 +40,9 @@ const validationSchema = Yup.object().shape({
       passRegExp,
       "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must be matched!"
-  ),
+  passwordConfirm: Yup.string()
+    .required("Confirm Password.")
+    .oneOf([Yup.ref("password"), null], "Passwords must match!"),
   phoneNumber: Yup.string()
     .matches(phoneRegExp, "Phone number is not valid")
     .nullable(),
@@ -55,6 +54,9 @@ function Signup() {
     initialValues,
     onSubmit,
     validationSchema,
+    validateOnChange: true, 
+    validateOnBlur: true,
+    validateOnMount: true, 
   });
 
   return (
@@ -69,7 +71,7 @@ function Signup() {
             id="firstName"
           />
           {formik.errors.firstName && formik.touched.firstName && (
-            <p>{formik.errors.firstName}</p>
+            <p className="error">{formik.errors.firstName}</p>
           )}
         </div>
         <div className="form-control">
@@ -81,7 +83,7 @@ function Signup() {
             id="lastName"
           />
           {formik.errors.lastName && formik.touched.lastName && (
-            <p>{formik.errors.lastName}</p>
+            <p className="error">{formik.errors.lastName}</p>
           )}
         </div>
         <div className="form-control">
@@ -93,7 +95,7 @@ function Signup() {
             id="email"
           />
           {formik.errors.email && formik.touched.email && (
-            <p>{formik.errors.email}</p>
+            <p className="error">{formik.errors.email}</p>
           )}
         </div>
         <div className="form-control">
@@ -105,19 +107,19 @@ function Signup() {
             id="password"
           />
           {formik.errors.password && formik.touched.password && (
-            <p>{formik.errors.password}</p>
+            <p className="error">{formik.errors.password}</p>
           )}
         </div>
         <div className="form-control">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="passwordConfirm">Confirm Password</label>
           <input
-            {...formik.getFieldProps("confirmPassword")}
+            {...formik.getFieldProps("passwordConfirm")}
             type="password"
-            name="confirmPassword"
-            id="confirmPassword"
+            name="passwordConfirm"
+            id="passwordConfirm"
           />
-          {formik.errors.confirmPassword && formik.touched.confirmPassword && (
-            <p>{formik.errors.confirmPassword}</p>
+          {formik.errors.passwordConfirm && formik.touched.passwordConfirm && (
+            <p className="error">{formik.errors.passwordConfirm}</p>
           )}
         </div>
         <div className="form-control">
@@ -129,10 +131,10 @@ function Signup() {
             id="phoneNumber"
           />
           {formik.errors.phoneNumber && formik.touched.phoneNumber && (
-            <p>{formik.errors.phoneNumber}</p>
+            <p className="error">{formik.errors.phoneNumber}</p>
           )}
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!formik.isValid}>Submit</button>
       </form>
     </div>
   );
