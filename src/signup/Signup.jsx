@@ -49,92 +49,138 @@ const validationSchema = Yup.object().shape({
 });
 
 function Signup() {
-
   const formik = useFormik({
     initialValues,
     onSubmit,
     validationSchema,
     validateOnChange: true, 
-    validateOnBlur: true,
-    validateOnMount: true, 
+    validateOnBlur: true, 
+    validateOnMount: true,  
   });
 
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
-        <div className="form-control">
-          <label htmlFor="firstName">First Name</label>
+    <div className="w-full max-w-xs">
+      <form
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        onSubmit={formik.handleSubmit}
+      >
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="firstName"
+          >
+            First Name
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("firstName")}
             type="text"
             name="firstName"
             id="firstName"
           />
           {formik.errors.firstName && formik.touched.firstName && (
-            <p className="error">{formik.errors.firstName}</p>
+            <p className="text-red-500 text-xs">{formik.errors.firstName}</p>
           )}
         </div>
-        <div className="form-control">
-          <label htmlFor="lastName">Last Name</label>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="lastName"
+          >
+            Last Name
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("lastName")}
             type="text"
             name="lastName"
             id="lastName"
           />
           {formik.errors.lastName && formik.touched.lastName && (
-            <p className="error">{formik.errors.lastName}</p>
+            <p className="text-red-500 text-xs">{formik.errors.lastName}</p>
           )}
         </div>
-        <div className="form-control">
-          <label htmlFor="email">Email</label>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="email"
+          >
+            Email
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("email")}
             type="email"
             name="email"
             id="email"
           />
           {formik.errors.email && formik.touched.email && (
-            <p className="error">{formik.errors.email}</p>
+            <p className="text-red-500 text-xs">{formik.errors.email}</p>
           )}
         </div>
-        <div className="form-control">
-          <label htmlFor="password">Password</label>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
+            Password
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("password")}
             type="password"
             name="password"
             id="password"
           />
           {formik.errors.password && formik.touched.password && (
-            <p className="error">{formik.errors.password}</p>
+            <p className="text-red-500 text-xs">{formik.errors.password}</p>
           )}
         </div>
-        <div className="form-control">
-          <label htmlFor="passwordConfirm">Confirm Password</label>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="passwordConfirm"
+          >
+            Confirm Password
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("passwordConfirm")}
             type="password"
             name="passwordConfirm"
             id="passwordConfirm"
           />
           {formik.errors.passwordConfirm && formik.touched.passwordConfirm && (
-            <p className="error">{formik.errors.passwordConfirm}</p>
+            <p className="text-red-500 text-xs">
+              {formik.errors.passwordConfirm}
+            </p>
           )}
         </div>
-        <div className="form-control">
-          <label htmlFor="phoneNumber">Phone Number</label>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="phoneNumber"
+          >
+            Phone Number
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("phoneNumber")}
             type="phoneNumber"
             name="phoneNumber"
             id="phoneNumber"
           />
           {formik.errors.phoneNumber && formik.touched.phoneNumber && (
-            <p className="error">{formik.errors.phoneNumber}</p>
+            <p className="text-red-500 text-xs">{formik.errors.phoneNumber}</p>
           )}
         </div>
-        <button type="submit" disabled={!formik.isValid}>Submit</button>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-gray-400 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+          disabled={!formik.isValid}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
