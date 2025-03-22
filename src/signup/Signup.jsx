@@ -1,36 +1,42 @@
 import React from "react";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const initialValues = {
   userName: "",
   email: "",
   password: "",
+  phoneNumber: "",
 };
 
 const onSubmit = (values) => {
   console.log(values);
 };
 
-const validate = (values) => {
-  let errors = {};
-  if (!values.userName) errors.userName = "Name is required";
-  if (!values.email) {
-    errors.email = "Email is required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
-  }
-  if (!values.password) errors.password = "Password is required";
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-  return errors;
-};
+const validationSchema = Yup.object().shape({
+  userName: Yup.string()
+    .min(2, "Name length is short.")
+    .max(50, "Name is too long!")
+    .required("Name is Required"),
+  email: Yup.string()
+    .email("Invalid email Format")
+    .required("Email is required"),
+  password: Yup.string().required("Password is required"),
+  phoneNumber: Yup.string()
+    .matches(phoneRegExp, "Phone number is not valid")
+    .nullable(),
+});
 
 function Signup() {
+
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validate,
+    validationSchema,
   });
-  console.log(formik.errors);
 
   return (
     <div>
@@ -38,9 +44,7 @@ function Signup() {
         <div className="form-control">
           <label htmlFor="userName">Name</label>
           <input
-            value={formik.values.userName}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps("userName")}
             type="text"
             name="userName"
             id="userName"
@@ -52,9 +56,7 @@ function Signup() {
         <div className="form-control">
           <label htmlFor="email">Email</label>
           <input
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps("email")}
             type="email"
             name="email"
             id="email"
@@ -66,15 +68,25 @@ function Signup() {
         <div className="form-control">
           <label htmlFor="password">Password</label>
           <input
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps("password")}
             type="password"
             name="password"
             id="password"
           />
           {formik.errors.password && formik.touched.password && (
             <p>{formik.errors.password}</p>
+          )}
+        </div>
+        <div className="form-control">
+          <label htmlFor="phoneNumber">Phone Number</label>
+          <input
+            {...formik.getFieldProps("phoneNumber")}
+            type="phoneNumber"
+            name="phoneNumber"
+            id="phoneNumber"
+          />
+          {formik.errors.phoneNumber && formik.touched.phoneNumber && (
+            <p>{formik.errors.phoneNumber}</p>
           )}
         </div>
         <button type="submit">Submit</button>
