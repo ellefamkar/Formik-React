@@ -57,7 +57,7 @@ function Signup() {
     validationSchema,
     validateOnChange: true, 
     validateOnBlur: true, 
-    validateOnMount: true, 
+    validateOnMount: true,
   });
 
   return (
@@ -193,7 +193,7 @@ function Signup() {
             onChange={formik.handleChange}
             checked={formik.values.gender === "0"}
           />
-          <label htmlFor="0">Male</label>
+          <label htmlFor="0" className="ml-1 mr-4">Male</label>
           <input
             type="radio"
             name="gender"
@@ -202,14 +202,14 @@ function Signup() {
             onChange={formik.handleChange}
             checked={formik.values.gender === "1"}
           />
-          <label htmlFor="1">Female</label>
+          <label htmlFor="1" className="ml-1 mr-2">Female</label>
         </div>
         <button
           className={`font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
             ${
               !formik.isValid
-                ? "bg-blue-500 hover:bg-blue-700 text-gray-300"
-                : "bg-gray-500 text-gray-500"
+                ? "bg-blue-200 hover:bg-blue-300 text-gray-100 cursor-not-allowed"
+                : "bg-blue-500 text-white cursor-pointer"
             }
             `}
           type="submit"
