@@ -1,13 +1,11 @@
-// import React, { useEffect, useState } from "react";
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import axios from "axios";
+import axios from "axios";
 import Input from "../common/Input";
 import RadioInput from "../common/RadioInput";
 import SelectOptionInput from "../common/SelectOptionInput";
 import CheckBoxInput from "../common/CheckBoxInput";
-import axios from "axios";
 
 const initialValues = {
   firstName: "",
@@ -96,12 +94,10 @@ function Signup() {
     initialValues: initialValues,
     onSubmit,
     validationSchema,
-    validateOnChange: true, 
+    validateOnChange: true,
     validateOnBlur: true, 
     validateOnMount: true, 
-
   });
-  console.log(formik.values);
 
   return (
     <div>
