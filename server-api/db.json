@@ -8,7 +8,8 @@
             "password": "StrongPass123*",
             "passwordConfirm": "StrongPass123*",
             "phoneNumber": "0611111111",
-            "gender": "1"
+            "gender": "1",
+            "nationality": "AUS"
         }
     ]
 }
