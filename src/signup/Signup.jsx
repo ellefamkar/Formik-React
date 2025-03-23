@@ -9,6 +9,7 @@ const initialValues = {
   password: "",
   passwordConfirm: "",
   phoneNumber: "",
+  gender: "",
   successMsg: "",
 };
 
@@ -26,11 +27,11 @@ const validationSchema = Yup.object().shape({
   firstName: Yup.string()
     .min(2, "First name length is short.")
     .max(50, "First name is too long!")
-    .required("First name is Required"),
+    .required("First name is required"),
   lastName: Yup.string()
     .min(2, "Family name length is short.")
     .max(50, "Family name is too long!")
-    .required("Family name is Required"),
+    .required("Family name is required"),
   email: Yup.string()
     .email("Invalid email Format")
     .required("Email is required"),
@@ -46,6 +47,7 @@ const validationSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .matches(phoneRegExp, "Phone number is not valid")
     .nullable(),
+  gender: Yup.string().required("Choose your gender."), 
 });
 
 function Signup() {
@@ -55,13 +57,13 @@ function Signup() {
     validationSchema,
     validateOnChange: true, 
     validateOnBlur: true, 
-    validateOnMount: true,  
+    validateOnMount: true, 
   });
 
   return (
-    <div className="w-full max-w-xs">
+    <div>
       <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         onSubmit={formik.handleSubmit}
       >
         <div className="mb-4">
@@ -72,14 +74,16 @@ function Signup() {
             First Name
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("firstName")}
             type="text"
             name="firstName"
             id="firstName"
           />
           {formik.errors.firstName && formik.touched.firstName && (
-            <p className="text-red-500 text-xs">{formik.errors.firstName}</p>
+            <p className="text-red-500 mt-2 text-xs">
+              {formik.errors.firstName}
+            </p>
           )}
         </div>
         <div className="mb-4">
@@ -90,14 +94,16 @@ function Signup() {
             Last Name
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("lastName")}
             type="text"
             name="lastName"
             id="lastName"
           />
           {formik.errors.lastName && formik.touched.lastName && (
-            <p className="text-red-500 text-xs">{formik.errors.lastName}</p>
+            <p className="text-red-500 mt-2 text-xs">
+              {formik.errors.lastName}
+            </p>
           )}
         </div>
         <div className="mb-4">
@@ -108,14 +114,14 @@ function Signup() {
             Email
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("email")}
             type="email"
             name="email"
             id="email"
           />
           {formik.errors.email && formik.touched.email && (
-            <p className="text-red-500 text-xs">{formik.errors.email}</p>
+            <p className="text-red-500 mt-2 text-xs">{formik.errors.email}</p>
           )}
         </div>
         <div className="mb-4">
@@ -126,14 +132,16 @@ function Signup() {
             Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("password")}
             type="password"
             name="password"
             id="password"
           />
           {formik.errors.password && formik.touched.password && (
-            <p className="text-red-500 text-xs">{formik.errors.password}</p>
+            <p className="text-red-500 mt-2 text-xs">
+              {formik.errors.password}
+            </p>
           )}
         </div>
         <div className="mb-4">
@@ -144,14 +152,14 @@ function Signup() {
             Confirm Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("passwordConfirm")}
             type="password"
             name="passwordConfirm"
             id="passwordConfirm"
           />
           {formik.errors.passwordConfirm && formik.touched.passwordConfirm && (
-            <p className="text-red-500 text-xs">
+            <p className="text-red-500 mt-2 text-xs">
               {formik.errors.passwordConfirm}
             </p>
           )}
@@ -164,18 +172,46 @@ function Signup() {
             Phone Number
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...formik.getFieldProps("phoneNumber")}
             type="phoneNumber"
             name="phoneNumber"
             id="phoneNumber"
           />
           {formik.errors.phoneNumber && formik.touched.phoneNumber && (
-            <p className="text-red-500 text-xs">{formik.errors.phoneNumber}</p>
+            <p className="text-red-500 mt-2 text-xs">
+              {formik.errors.phoneNumber}
+            </p>
           )}
         </div>
+        <div className="mb-4">
+          <input
+            type="radio"
+            name="gender"
+            id="0"
+            value="0"
+            onChange={formik.handleChange}
+            checked={formik.values.gender === "0"}
+          />
+          <label htmlFor="0">Male</label>
+          <input
+            type="radio"
+            name="gender"
+            id="1"
+            value="1"
+            onChange={formik.handleChange}
+            checked={formik.values.gender === "1"}
+          />
+          <label htmlFor="1">Female</label>
+        </div>
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-gray-400 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className={`font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
+            ${
+              !formik.isValid
+                ? "bg-blue-500 hover:bg-blue-700 text-gray-300"
+                : "bg-gray-500 text-gray-500"
+            }
+            `}
           type="submit"
           disabled={!formik.isValid}
         >
