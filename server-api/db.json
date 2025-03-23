@@ -1,0 +1,14 @@
+{
+    "users" : [
+        {
+            "id" : "1",
+            "firstName": "Elle",
+            "lastName": "Famkar",
+            "email": "ellefamkar@gmail.com",
+            "password": "StrongPass123*",
+            "passwordConfirm": "StrongPass123*",
+            "phoneNumber": "0611111111",
+            "gender": "1"
+        }
+    ]
+}

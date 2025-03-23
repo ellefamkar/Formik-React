@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 const initialValues = {
   firstName: "",
@@ -10,7 +11,6 @@ const initialValues = {
   passwordConfirm: "",
   phoneNumber: "",
   gender: "",
-  successMsg: "",
 };
 
 const onSubmit = (values) => {
@@ -47,18 +47,28 @@ const validationSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .matches(phoneRegExp, "Phone number is not valid")
     .nullable(),
-  gender: Yup.string().required("Choose your gender."), 
+  gender: Yup.string().required("Choose your gender."),
 });
 
 function Signup() {
+  const [formValues, setFormValues] = useState(null);
+
   const formik = useFormik({
-    initialValues,
+    initialValues: formValues || initialValues,
     onSubmit,
     validationSchema,
     validateOnChange: true, 
     validateOnBlur: true, 
-    validateOnMount: true,
+    validateOnMount: true, 
+    enableReinitialize: true,
   });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/users/1")
+      .then((response) => setFormValues(response.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <div>
@@ -75,6 +85,10 @@ function Signup() {
           </label>
           <input
             className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            // value={formik.values.firstName}
+            // onChange={formik.handleChange}
+            // onBlur={formik.handleBlur} => bejash az ziri estefade mikonim
+            // behesh migan : Reducing Boilerplate
             {...formik.getFieldProps("firstName")}
             type="text"
             name="firstName"
@@ -193,7 +207,9 @@ function Signup() {
             onChange={formik.handleChange}
             checked={formik.values.gender === "0"}
           />
-          <label htmlFor="0" className="ml-1 mr-4">Male</label>
+          <label htmlFor="0" className="ml-1 mr-4">
+            Male
+          </label>
           <input
             type="radio"
             name="gender"
@@ -202,7 +218,12 @@ function Signup() {
             onChange={formik.handleChange}
             checked={formik.values.gender === "1"}
           />
-          <label htmlFor="1" className="ml-1 mr-2">Female</label>
+          <label htmlFor="1" className="ml-1 mr-2">
+            Female
+          </label>
+          {formik.errors.gender && formik.touched.gender && (
+            <p className="text-red-500 mt-2 text-xs">{formik.errors.gender}</p>
+          )}
         </div>
         <button
           className={`font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
