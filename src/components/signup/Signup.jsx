@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+// import axios from "axios";
 import Input from "../common/Input";
 import RadioInput from "../common/RadioInput";
 import SelectOptionInput from "../common/SelectOptionInput";
+import CheckBoxInput from "../common/CheckBoxInput";
+import axios from "axios";
 
 const initialValues = {
   firstName: "",
@@ -15,10 +18,16 @@ const initialValues = {
   phoneNumber: "",
   gender: "",
   nationality: "",
+  courses: [],
+  terms: false,
 };
 
 const onSubmit = (values) => {
-  console.log(values);
+  alert(values);
+  axios
+    .post("http://localhost:3000/users/", values)
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err));
 };
 
 const phoneRegExp =
@@ -53,6 +62,13 @@ const validationSchema = Yup.object().shape({
     .nullable(),
   gender: Yup.string().required("Choose your gender."),
   nationality: Yup.string().required("Nationality is required"),
+  courses: Yup.array()
+    .min(1, "At Least one course should be chosen.")
+    .required("At Least one course should be chosen."),
+  terms: Yup.boolean().oneOf(
+    [true],
+    "The terms and conditions must be accepted."
+  ),
 });
 
 const radioOptions = [
@@ -61,33 +77,31 @@ const radioOptions = [
 ];
 
 const selectOptions = [
-  { label: "Select Nationality", value: ""},
-  { label: "Australia", value: "AUS"},
-  { label: "Canada", value: "CA"},
-  { label: "New Zeland", value: "NZ"},
-  { label: "Iran", value: "IR"},
+  { label: "Select Nationality", value: "" },
+  { label: "Australia", value: "AUS" },
+  { label: "Canada", value: "CA" },
+  { label: "New Zeland", value: "NZ" },
+  { label: "Iran", value: "IR" },
+];
+
+const checkBoxOptions = [
+  { label: "ReactJS", value: "ReactJS" },
+  { label: "JavaScript", value: "JavaScript" },
+  { label: "NextJS", value: "NextJS" },
 ];
 
 function Signup() {
-  const [formValues, setFormValues] = useState(null);
 
   const formik = useFormik({
-    initialValues: formValues || initialValues,
+    initialValues: initialValues,
     onSubmit,
     validationSchema,
     validateOnChange: true, 
     validateOnBlur: true, 
     validateOnMount: true, 
-    enableReinitialize: true,
+
   });
   console.log(formik.values);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/users/1")
-      .then((response) => setFormValues(response.data))
-      .catch((error) => console.log(error));
-  }, []);
 
   return (
     <div>
@@ -122,7 +136,37 @@ function Signup() {
           label="Phone Number"
         />
         <RadioInput formik={formik} radioOptions={radioOptions} name="gender" />
-        <SelectOptionInput formik={formik} selectOptions={selectOptions} name="nationality" />
+        <SelectOptionInput
+          formik={formik}
+          selectOptions={selectOptions}
+          name="nationality"
+        />
+        <CheckBoxInput
+          name="courses"
+          formik={formik}
+          checkBoxOptions={checkBoxOptions}
+          onChange={formik.handleChange}
+        />
+        <div className="mb-4">
+          <input
+            className="cursor-pointer"
+            type="checkbox"
+            id="terms"
+            name="terms"
+            onChange={(e) => {
+              formik.setFieldValue("terms", e.target.checked);
+              !e.target.checked && formik.setTouched({ ...formik.touched, terms: true }, false);
+              
+            }}
+            checked={formik.values.terms}
+          />
+          <label htmlFor="terms" className="ml-1 mr-4 cursor-pointer">
+            I agree to the terms and conditions.
+          </label>
+          {formik.errors.terms && formik.touched.terms && (
+            <p className="text-red-500 mt-2 text-xs">{formik.errors.terms}</p>
+          )}
+        </div>
         <button
           className={`font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
             ${
