@@ -8,11 +8,9 @@ function Input({ label, name, type = "text", formik }) {
         {label}
       </label>
       <input
-        className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        // value={formik.values.firstName}
-        // onChange={formik.handleChange}
-        // onBlur={formik.handleBlur} => bejash az ziri estefade mikonim
-        // behesh migan : Reducing Boilerplate
+        className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+        focus:shadow-gray-400 focus:-translate-0.2
+        "
         {...formik.getFieldProps({ name })}
         type={type}
         name={name}

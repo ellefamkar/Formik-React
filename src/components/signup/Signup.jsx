@@ -6,6 +6,8 @@ import Input from "../common/Input";
 import RadioInput from "../common/RadioInput";
 import SelectOptionInput from "../common/SelectOptionInput";
 import CheckBoxInput from "../common/CheckBoxInput";
+import { toast } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 
 const initialValues = {
   firstName: "",
@@ -19,55 +21,6 @@ const initialValues = {
   courses: [],
   terms: false,
 };
-
-const onSubmit = (values) => {
-  alert(values);
-  axios
-    .post("http://localhost:3000/users/", values)
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err));
-};
-
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-const passRegExp =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
-
-const validationSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .min(2, "First name length is short.")
-    .max(50, "First name is too long!")
-    .required("First name is required"),
-  lastName: Yup.string()
-    .min(2, "Family name length is short.")
-    .max(50, "Family name is too long!")
-    .required("Family name is required"),
-  email: Yup.string()
-    .email("Invalid email Format")
-    .required("Email is required"),
-  password: Yup.string()
-    .required("Password is required")
-    .matches(
-      passRegExp,
-      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-    ),
-  passwordConfirm: Yup.string()
-    .required("Confirm Password.")
-    .oneOf([Yup.ref("password"), null], "Passwords must match!"),
-  phoneNumber: Yup.string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .nullable(),
-  gender: Yup.string().required("Choose your gender."),
-  nationality: Yup.string().required("Nationality is required"),
-  courses: Yup.array()
-    .min(1, "At Least one course should be chosen.")
-    .required("At Least one course should be chosen."),
-  terms: Yup.boolean().oneOf(
-    [true],
-    "The terms and conditions must be accepted."
-  ),
-});
 
 const radioOptions = [
   { label: "Male", value: "0" },
@@ -88,30 +41,97 @@ const checkBoxOptions = [
   { label: "NextJS", value: "NextJS" },
 ];
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+const passRegExp =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
+
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .min(2, "First name is too short!")
+    .max(50, "First name is too long!")
+    .required("First name is required."),
+  lastName: Yup.string()
+    .min(2, "Family name is too short!")
+    .max(50, "Family name is too long!")
+    .required("Family name is required."),
+  email: Yup.string()
+    .email("Invalid email Format")
+    .required("Email is required"),
+  password: Yup.string()
+    .required("Password is required")
+    .matches(
+      passRegExp,
+      "Must Contain 8 Characters, one Uppercase, one Lowercase, one Number and one Special Case Character"
+    ),
+  passwordConfirm: Yup.string()
+    .required("Confirm Password.")
+    .oneOf([Yup.ref("password"), null], "Passwords must match!"),
+  phoneNumber: Yup.string()
+    .matches(phoneRegExp, "Phone number is not valid")
+    .nullable(),
+  gender: Yup.string().required("Choose your gender."),
+  nationality: Yup.string().required("Nationality is required"),
+  courses: Yup.array()
+    .min(1, "At Least one course should be chosen.")
+    .required("At Least one course should be chosen."),
+  terms: Yup.boolean().oneOf(
+    [true],
+    "The terms and conditions must be accepted."
+  ),
+});
+
+const onSubmit = (values) => {
+  axios
+    .post("http://localhost:3000/users/", values)
+    .then((res) => {
+      console.log(res.data);
+      toast.success("Signup successfully submitted!", {
+        position: "top-right",
+        autoClose: 8000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    })
+    .catch((err) => {
+      toast.error(err, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    });
+};
+
 function Signup() {
 
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit,
     validationSchema,
-    validateOnChange: true,
-    validateOnBlur: true, 
+    validateOnChange: true, 
+    validateOnBlur: true,
     validateOnMount: true, 
   });
 
   return (
-    <div>
+    <div className="w-md max-w-md mx-auto">
+      <h2 className="text-2xl font-bold text-zinc-800 mb-3">Sign up</h2>
       <form
-        className="max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="text-left bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         onSubmit={formik.handleSubmit}
       >
-        <Input
-          formik={formik}
-          type="text"
-          name="firstName"
-          label="First Name"
-        />
-        <Input formik={formik} type="text" name="lastName" label="Last Name" />
+        <Input formik={formik} name="firstName" label="First Name" />
+        <Input formik={formik} name="lastName" label="Last Name" />
         <Input formik={formik} type="email" name="email" label="Email" />
         <Input
           formik={formik}
@@ -125,12 +145,7 @@ function Signup() {
           name="passwordConfirm"
           label="Confirm Password"
         />
-        <Input
-          formik={formik}
-          type="text"
-          name="phoneNumber"
-          label="Phone Number"
-        />
+        <Input formik={formik} name="phoneNumber" label="Phone Number" />
         <RadioInput formik={formik} radioOptions={radioOptions} name="gender" />
         <SelectOptionInput
           formik={formik}
@@ -151,8 +166,8 @@ function Signup() {
             name="terms"
             onChange={(e) => {
               formik.setFieldValue("terms", e.target.checked);
-              !e.target.checked && formik.setTouched({ ...formik.touched, terms: true }, false);
-              
+              !e.target.checked &&
+                formik.setTouched({ ...formik.touched, terms: true }, false);
             }}
             checked={formik.values.terms}
           />
@@ -164,7 +179,7 @@ function Signup() {
           )}
         </div>
         <button
-          className={`font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
+          className={` font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
             ${
               !formik.isValid
                 ? "bg-blue-200 hover:bg-blue-300 text-gray-100 cursor-not-allowed"

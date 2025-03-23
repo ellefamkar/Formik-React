@@ -1,4 +1,94 @@
 {
   "users": [
+    {
+      "id": "1ad3",
+      "firstName": "Elle",
+      "lastName": "Famkar",
+      "email": "ellefamkar@gmail.com",
+      "password": "3ln4zF4mk4r*@#",
+      "passwordConfirm": "3ln4zF4mk4r*@#",
+      "phoneNumber": "2342323423",
+      "gender": "1",
+      "nationality": "AUS",
+      "courses": [
+        "JavaScript"
+      ],
+      "terms": true
+    },
+    {
+      "id": "662b",
+      "firstName": "Elle",
+      "lastName": "Famkar",
+      "email": "ellefamkar@gmail.com",
+      "password": "3ln4zF4mk4r*@#",
+      "passwordConfirm": "3ln4zF4mk4r*@#",
+      "phoneNumber": "2342323423",
+      "gender": "1",
+      "nationality": "AUS",
+      "courses": [
+        "JavaScript"
+      ],
+      "terms": true
+    },
+    {
+      "id": "14a2",
+      "firstName": "Elle",
+      "lastName": "Famkar",
+      "email": "ellefamkar@gmail.com",
+      "password": "3ln4zF4mk4r*",
+      "passwordConfirm": "3ln4zF4mk4r*",
+      "phoneNumber": "2342323423",
+      "gender": "1",
+      "nationality": "AUS",
+      "courses": [
+        "JavaScript"
+      ],
+      "terms": true
+    },
+    {
+      "id": "9d5e",
+      "firstName": "Elle",
+      "lastName": "Famkar",
+      "email": "ellefamkar@gmail.com",
+      "password": "3ln4zF4mk4r*",
+      "passwordConfirm": "3ln4zF4mk4r*",
+      "phoneNumber": "2342323423",
+      "gender": "1",
+      "nationality": "AUS",
+      "courses": [
+        "JavaScript"
+      ],
+      "terms": true
+    },
+    {
+      "id": "c2fe",
+      "firstName": "Elle",
+      "lastName": "Famkar",
+      "email": "ellefamkar@gmail.com",
+      "password": "3ln4zF4mk4r*",
+      "passwordConfirm": "3ln4zF4mk4r*",
+      "phoneNumber": "2342323423",
+      "gender": "1",
+      "nationality": "CA",
+      "courses": [
+        "JavaScript"
+      ],
+      "terms": true
+    },
+    {
+      "id": "64f6",
+      "firstName": "Elle",
+      "lastName": "Famkar",
+      "email": "ellefamkar@gmail.com",
+      "password": "3ln4zF4mk4r*",
+      "passwordConfirm": "3ln4zF4mk4r*",
+      "phoneNumber": "2342323423",
+      "gender": "1",
+      "nationality": "AUS",
+      "courses": [
+        "NextJS"
+      ],
+      "terms": true
+    }
   ]
 }
