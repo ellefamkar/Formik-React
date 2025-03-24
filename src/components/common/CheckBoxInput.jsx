@@ -2,7 +2,7 @@ import React from "react";
 
 function CheckBoxInput({ checkBoxOptions, name, formik }) {
   return (
-    <div className="mb-4">
+    <div className="mb-4 text-left">
       <div className="flex flex-col sm:flex-row sm:flex-wrap">
         {checkBoxOptions.map((item) => {
           const isChecked = formik.values[name].includes(item.value);

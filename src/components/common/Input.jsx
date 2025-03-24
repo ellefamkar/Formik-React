@@ -1,6 +1,6 @@
 function Input({ label, name, type = "text", formik }) {
   return (
-    <div className="mb-4">
+    <div className="mb-4 text-left">
       <label
         className="block text-gray-700 text-sm font-bold mb-2 cursor-pointer"
         htmlFor={name}

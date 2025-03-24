@@ -2,7 +2,7 @@ import React from "react";
 
 function SingleCheckboxInput({ formik, label, name }) {
   return (
-    <div className="mb-4">
+    <div className="mb-4 text-left">
       <input
         className="
            cursor-pointer peer relative appearance-none shrink-0 w-3.5 h-3.5 border-1 border-gray-300 rounded -m-0.5 mr-1 bg-white shadow

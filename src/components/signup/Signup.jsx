@@ -121,7 +121,7 @@ function Signup() {
     onSubmit,
     validationSchema,
     validateOnChange: true, 
-    validateOnBlur: true,
+    validateOnBlur: true, 
     validateOnMount: true, 
   });
 
@@ -133,7 +133,7 @@ function Signup() {
         alt="Signup Logo"
       />
       <form
-        className="text-left bg-white shadow-md inset-shadow-amber-950 rounded-2xl px-6 sm:px-8 pt-10 pb-8 mb-4"
+        className="bg-white shadow-md inset-shadow-amber-950 rounded-2xl px-6 sm:px-8 pt-10 pb-8 mb-4"
         onSubmit={formik.handleSubmit}>
         <Input formik={formik} name="firstName" label="First Name" />
         <Input formik={formik} name="lastName" label="Last Name" />
@@ -149,7 +149,7 @@ function Signup() {
           className={`font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
             ${
               !formik.isValid
-                ? "bg-gray-300 hover:bg-gray-300 text-gray-100 cursor-not-allowed"
+                ? "bg-gray-200 text-white cursor-not-allowed"
                 : "bg-amber-950 text-white cursor-pointer"
             }
             `}

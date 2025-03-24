@@ -26,9 +26,9 @@ Remember that "Every day is a learning day" and try to learn from everyone!
 
  ### Screenshot 
 
-<!-- ![](./src/images/Screenshot-1.png)
-
-![](./src/images/Screenshot-2.png) -->
+![](./src/assets/images/desktop-screenshot.png)
+![](./src/assets/images/desktop-errors-screenshot.png)
+![](./src/assets/images/desktop-filled-screenshot.png)
 
 ### Links
 
