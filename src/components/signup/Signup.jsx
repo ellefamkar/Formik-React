@@ -1,3 +1,4 @@
+// import React, { useEffect, useState } from "react";
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -119,13 +120,12 @@ function Signup() {
     onSubmit,
     validationSchema,
     validateOnChange: true, 
-    validateOnBlur: true,
+    validateOnBlur: true, 
     validateOnMount: true, 
   });
-
   return (
     <div className="w-md max-w-md mx-auto">
-      <h2 className="text-2xl font-bold text-zinc-800 mb-3">Sign up</h2>
+      <img className="rounded-full mb-3 w-20 h-20 object-cover mx-auto" src="/signup-logo.PNG" alt="Signup Logo" />
       <form
         className="text-left bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         onSubmit={formik.handleSubmit}
@@ -175,15 +175,15 @@ function Signup() {
             I agree to the terms and conditions.
           </label>
           {formik.errors.terms && formik.touched.terms && (
-            <p className="text-red-500 mt-2 text-xs">{formik.errors.terms}</p>
+            <p className="text-amber-600 mt-2 text-xs">{formik.errors.terms}</p>
           )}
         </div>
         <button
           className={` font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
             ${
               !formik.isValid
-                ? "bg-blue-200 hover:bg-blue-300 text-gray-100 cursor-not-allowed"
-                : "bg-blue-500 text-white cursor-pointer"
+                ? "bg-gray-300 hover:bg-gray-300 text-gray-100 cursor-not-allowed"
+                : "bg-amber-950 text-white cursor-pointer"
             }
             `}
           type="submit"

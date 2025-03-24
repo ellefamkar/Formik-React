@@ -21,7 +21,7 @@ function SelectOptionInput({ formik, selectOptions, name }) {
         ))}
       </select>
       {formik.errors[name] && formik.touched[name] && (
-        <p className="text-red-500 mt-2 text-xs">{formik.errors[name]}</p>
+        <p className="text-amber-600 mt-2 text-xs">{formik.errors[name]}</p>
       )}
     </div>
   );
