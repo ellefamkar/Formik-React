@@ -2,15 +2,15 @@ function Input({ label, name, type = "text", formik }) {
   return (
     <div className="mb-4">
       <label
-        className="block text-gray-700 text-sm font-bold mb-2"
+        className="block text-gray-700 text-sm font-bold mb-2 cursor-pointer"
         htmlFor={name}
       >
         {label}
       </label>
       <input
-        className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
-        focus:shadow-gray-400 focus:-translate-0.2
-        "
+        className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight transition delay-100 focus:outline-none focus:shadow-outline
+        focus:shadow-amber-950 focus:-translate-0.2
+        hover:shadow-amber-950"
         {...formik.getFieldProps({ name })}
         type={type}
         name={name}

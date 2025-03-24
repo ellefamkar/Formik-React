@@ -7,13 +7,14 @@ function CheckBoxInput({ checkBoxOptions, name, formik }) {
         <React.Fragment key={item.value}>
           <input
             type="checkbox"
+            className="cursor-pointer"
             id={item.value}
             name={name}
             value={item.value}
             onChange={formik.handleChange}
             checked={formik.values[name].includes(item.value)}
           />
-          <label htmlFor={item.value} className="ml-1 mr-4">
+          <label htmlFor={item.value} className="ml-1 mr-4 cursor-pointer">
             {item.label}
           </label>
         </React.Fragment>

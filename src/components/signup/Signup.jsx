@@ -123,41 +123,26 @@ function Signup() {
     validateOnBlur: true, 
     validateOnMount: true, 
   });
+
   return (
     <div className="w-md max-w-md mx-auto">
-      <img className="rounded-full mb-3 w-20 h-20 object-cover mx-auto" src="/signup-logo.PNG" alt="Signup Logo" />
+      <img
+        className="rounded-full mb-3 w-20 h-20 object-cover mx-auto drop-shadow-md"
+        src="/signup-logo.PNG"
+        alt="Signup Logo"
+      />
       <form
-        className="text-left bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-        onSubmit={formik.handleSubmit}
-      >
+        className="text-left bg-white shadow-md inset-shadow-amber-950 rounded-2xl px-8 pt-6 pb-8 mb-4"
+        onSubmit={formik.handleSubmit}>
         <Input formik={formik} name="firstName" label="First Name" />
         <Input formik={formik} name="lastName" label="Last Name" />
         <Input formik={formik} type="email" name="email" label="Email" />
-        <Input
-          formik={formik}
-          type="password"
-          name="password"
-          label="Password"
-        />
-        <Input
-          formik={formik}
-          type="password"
-          name="passwordConfirm"
-          label="Confirm Password"
-        />
+        <Input formik={formik} type="password" name="password" label="Password" />
+        <Input formik={formik} type="password" name="passwordConfirm" label="Confirm Password" />
         <Input formik={formik} name="phoneNumber" label="Phone Number" />
         <RadioInput formik={formik} radioOptions={radioOptions} name="gender" />
-        <SelectOptionInput
-          formik={formik}
-          selectOptions={selectOptions}
-          name="nationality"
-        />
-        <CheckBoxInput
-          name="courses"
-          formik={formik}
-          checkBoxOptions={checkBoxOptions}
-          onChange={formik.handleChange}
-        />
+        <SelectOptionInput formik={formik} selectOptions={selectOptions} name="nationality" />
+        <CheckBoxInput  name="courses" formik={formik} checkBoxOptions={checkBoxOptions} onChange={formik.handleChange} />
         <div className="mb-4">
           <input
             className="cursor-pointer"
