@@ -5,7 +5,7 @@ function Input({ label, name, type = "text", formik }) {
         className="block text-gray-700 text-sm font-bold mb-2 cursor-pointer"
         htmlFor={name}
       >
-        {label}
+        {label} {name !== "phoneNumber" ? (<span className="text-amber-500"> * </span>) : ""}
       </label>
       <input
         className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight transition delay-100 focus:outline-none focus:shadow-outline

@@ -29,11 +29,12 @@ const radioOptions = [
 ];
 
 const selectOptions = [
-  { label: "Select Nationality", value: "" },
+  { label: "Select Your Nationality", value: "" },
   { label: "Australia", value: "AUS" },
   { label: "Canada", value: "CA" },
   { label: "New Zeland", value: "NZ" },
   { label: "Iran", value: "IR" },
+  { label: "England", value: "EN" },
 ];
 
 const checkBoxOptions = [
@@ -120,19 +121,19 @@ function Signup() {
     onSubmit,
     validationSchema,
     validateOnChange: true, 
-    validateOnBlur: true, 
+    validateOnBlur: true,
     validateOnMount: true, 
   });
 
   return (
-    <div className="w-md max-w-md mx-auto">
+    <div className="w-full md:w-lg md:max-w-lg mx-auto relative my-6">
       <img
-        className="rounded-full mb-3 w-20 h-20 object-cover mx-auto drop-shadow-md"
+        className="absolute -top-10 right-6 md:right-52 rounded-full mb-3 w-20 h-20 object-cover mx-auto drop-shadow-md"
         src="/signup-logo.PNG"
         alt="Signup Logo"
       />
       <form
-        className="text-left bg-white shadow-md inset-shadow-amber-950 rounded-2xl px-8 pt-6 pb-8 mb-4"
+        className="text-left bg-white shadow-md inset-shadow-amber-950 rounded-2xl px-6 sm:px-8 pt-10 pb-8 mb-4"
         onSubmit={formik.handleSubmit}>
         <Input formik={formik} name="firstName" label="First Name" />
         <Input formik={formik} name="lastName" label="Last Name" />
@@ -145,7 +146,7 @@ function Signup() {
         <CheckBoxInput  name="courses" formik={formik} checkBoxOptions={checkBoxOptions} onChange={formik.handleChange} />
         <SingleCheckboxInput name="terms" formik={formik} label="I agree to the terms and conditions." />
         <button
-          className={` font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
+          className={`font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
             ${
               !formik.isValid
                 ? "bg-gray-300 hover:bg-gray-300 text-gray-100 cursor-not-allowed"

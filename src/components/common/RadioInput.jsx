@@ -7,7 +7,9 @@ function RadioInput({ formik, name, radioOptions }) {
         <React.Fragment key={item.value}>
           <input
             type="radio"
-            className="cursor-pointer"
+            className="   cursor-pointer peer relative appearance-none shrink-0 w-3.5 h-3.5 border-1 border-gray-300 rounded-full -m-0.5 mr-1 bg-white shadow
+           focus:outline-none focus:ring-offset-0 focus:ring-1 focus:ring-blue-100
+           checked:bg-amber-500 checked:border-amber-500"
             name={name}
             id={item.value}
             value={item.value}

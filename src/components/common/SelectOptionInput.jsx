@@ -2,7 +2,7 @@ function SelectOptionInput({ formik, selectOptions, name }) {
   return (
     <div className="mb-4">
       <select
-        className="px-2 py-1 border outline-0 outline-offset-0 border-gray-100 hover:shadow-amber-950 transition shadow rounded leading-tight focus:outline-none focus:shadow-outline cursor-pointer"
+        className="w-full px-2 py-1 border outline-0 outline-offset-0 border-gray-100 hover:shadow-amber-950 transition shadow rounded leading-tight focus:outline-none focus:shadow-outline cursor-pointer"
         {...formik.getFieldProps(name)}
         name={name}
       >
