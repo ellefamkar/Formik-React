@@ -9,6 +9,7 @@ import SelectOptionInput from "../common/SelectOptionInput";
 import CheckBoxInput from "../common/CheckBoxInput";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
+import SingleCheckboxInput from "../common/SingleCheckboxInput";
 
 const initialValues = {
   firstName: "",
@@ -143,26 +144,7 @@ function Signup() {
         <RadioInput formik={formik} radioOptions={radioOptions} name="gender" />
         <SelectOptionInput formik={formik} selectOptions={selectOptions} name="nationality" />
         <CheckBoxInput  name="courses" formik={formik} checkBoxOptions={checkBoxOptions} onChange={formik.handleChange} />
-        <div className="mb-4">
-          <input
-            className="cursor-pointer"
-            type="checkbox"
-            id="terms"
-            name="terms"
-            onChange={(e) => {
-              formik.setFieldValue("terms", e.target.checked);
-              !e.target.checked &&
-                formik.setTouched({ ...formik.touched, terms: true }, false);
-            }}
-            checked={formik.values.terms}
-          />
-          <label htmlFor="terms" className="ml-1 mr-4 cursor-pointer">
-            I agree to the terms and conditions.
-          </label>
-          {formik.errors.terms && formik.touched.terms && (
-            <p className="text-amber-600 mt-2 text-xs">{formik.errors.terms}</p>
-          )}
-        </div>
+        <SingleCheckboxInput name="terms" formik={formik} label="I agree to the terms and conditions." />
         <button
           className={` font-bold py-2 px-4 rounded outline-none border-none hover:border-none focus:shadow-outline
             ${
