@@ -4,6 +4,7 @@
 
 In the project directory, you can run:
 ### `npm start`
+### `npm run server`
 
 ## Table of contents
 
@@ -32,7 +33,7 @@ Remember that "Every day is a learning day" and try to learn from everyone!
 
 ### Links
 
-- Live Site URL: [React Sign Up Form Application](https://react-form-formik.netlify.app/)
+- Live Site URL: [React Sign Up Form Application](https://form-react-formik.netlify.app/)
 
 ## My process
 
