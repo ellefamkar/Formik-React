@@ -1,3 +1,4 @@
+// import React, { useEffect, useState } from "react";
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -60,21 +61,21 @@ const validationSchema = Yup.object().shape({
     .required("Family name is required."),
   email: Yup.string()
     .email("Invalid email Format")
-    .required("Email is required"),
+    .required("Email is required."),
   password: Yup.string()
-    .required("Password is required")
+    .required("Password is required.")
     .matches(
       passRegExp,
-      "Must Contain 8 Characters, one Uppercase, one Lowercase, one Number and one Special Case Character"
+      "Must Contain 8 Characters, one Uppercase, one Lowercase, one Number and one Special Case Character."
     ),
   passwordConfirm: Yup.string()
     .required("Confirm Password.")
-    .oneOf([Yup.ref("password"), null], "Passwords must match!"),
+    .oneOf([Yup.ref("password"), null], "Passwords are not match!"),
   phoneNumber: Yup.string()
-    .matches(phoneRegExp, "Phone number is not valid")
+    .matches(phoneRegExp, "Phone number is not valid.")
     .nullable(),
   gender: Yup.string().required("Choose your gender."),
-  nationality: Yup.string().required("Nationality is required"),
+  nationality: Yup.string().required("Nationality is required."),
   courses: Yup.array()
     .min(1, "At Least one course should be chosen.")
     .required("At Least one course should be chosen."),
